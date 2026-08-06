@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: dark;
+}
+
+html, body, #root {
+  background-color: #0a0d12;
+  min-height: 100%;
+}
+
+body {
+  font-family: 'Vazirmatn', 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Custom scrollbar - red/green gaming */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: #0a0d12; }
+::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #b91c1c, #991b1b); border-radius: 6px; }
+::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, #dc2626, #b91c1c); }
+
+/* Markdown styling */
+.markdown-body { color: #e2e8f0; line-height: 1.7; }
+.markdown-body h1 { @apply text-2xl font-bold mb-4 text-white; }
+.markdown-body h2 { @apply text-xl font-bold mb-3 mt-6 text-red-400; }
+.markdown-body h3 { @apply text-lg font-bold mb-2 mt-4 text-emerald-400; }
+.markdown-body p { @apply mb-4 leading-relaxed; }
+.markdown-body ul { @apply list-disc list-inside mb-4 space-y-1.5 text-slate-200; }
+.markdown-body ol { @apply list-decimal list-inside mb-4 space-y-1.5 text-slate-200; }
+.markdown-body strong { @apply font-bold text-white; }
+.markdown-body code { @apply bg-slate-800 px-1.5 py-0.5 rounded text-sm text-red-400 font-mono; }
+.markdown-body pre { @apply bg-slate-900 p-4 rounded-xl overflow-x-auto mb-4 border border-slate-800; }
+.markdown-body pre code { @apply bg-transparent p-0 text-slate-300; }
+.markdown-body a { @apply text-emerald-400 hover:underline; }
+.markdown-body blockquote { @apply border-l-4 border-red-600 pl-4 italic text-slate-400; }
+
+/* Glow utility for hero/item cards */
+.glow-red { box-shadow: 0 0 24px -8px rgba(239, 68, 68, 0.5); }
+.glow-green { box-shadow: 0 0 24px -8px rgba(16, 185, 129, 0.5); }
+.glow-gold { box-shadow: 0 0 24px -8px rgba(234, 179, 8, 0.5); }
+
+/* Animated gradient border */
+@keyframes shimmer { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
+.shimmer { background: linear-gradient(90deg, #b91c1c, #f59e0b, #10b981, #b91c1c); background-size: 200% 100%; animation: shimmer 4s linear infinite; }
+
+/* Tier badges */
+.tier-S { background: linear-gradient(135deg, #dc2626, #f59e0b); color: white; }
+.tier-A { background: linear-gradient(135deg, #10b981, #059669); color: white; }
+.tier-B { background: linear-gradient(135deg, #3b82f6, #2563eb); color: white; }
+.tier-C { background: linear-gradient(135deg, #8b5cf6, #7c3aed); color: white; }
+.tier-D { background: linear-gradient(135deg, #64748b, #475569); color: white; }
+
+/* Hide number input spinners */
+input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+
+/* Safe area padding for mobile bottom nav */
+.pb-safe { padding-bottom: env(safe-area-inset-bottom, 0.5rem); }
+
+/* RTL adjustments */
+[dir="rtl"] .flip { transform: scaleX(-1); }

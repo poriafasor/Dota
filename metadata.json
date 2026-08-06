@@ -1,0 +1,8 @@
+{
+  "name": "PRF Dota 2",
+  "description": "Comprehensive Dota 2 coaching and database application with AI meta analysis.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

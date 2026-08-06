@@ -1,0 +1,41 @@
+{
+  "name": "prf-dota-2",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "PRF Dota 2 — A complete Dota Plus-style coaching companion (127 heroes, full items, builds, counter picks, live analysis). Works offline.",
+  "scripts": {
+    "dev": "tsx server.ts",
+    "build": "vite build",
+    "start": "cross-env NODE_ENV=production node dist/server.cjs",
+    "build:full": "vite build && esbuild server.ts --bundle --platform=node --format=cjs --packages=external --sourcemap --outfile=dist/server.cjs",
+    "clean": "rm -rf dist server.js",
+    "lint": "tsc --noEmit",
+    "download:assets": "node scripts/download.js"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.1.14",
+    "@vitejs/plugin-react": "^5.0.4",
+    "clsx": "^2.1.1",
+    "express": "^4.21.2",
+    "framer-motion": "^13.0.0",
+    "lucide-react": "^0.546.0",
+    "react": "^19.0.1",
+    "react-dom": "^19.0.1",
+    "react-router-dom": "^7.18.2",
+    "recharts": "^3.10.1",
+    "tailwind-merge": "^3.6.0",
+    "vite": "^6.2.3",
+    "zustand": "^5.0.14"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.14.0",
+    "autoprefixer": "^10.4.21",
+    "cross-env": "^7.0.3",
+    "esbuild": "^0.25.0",
+    "tailwindcss": "^4.1.14",
+    "tsx": "^4.21.0",
+    "typescript": "~5.8.2"
+  }
+}
