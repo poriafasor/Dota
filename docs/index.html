@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>دوتا گاید | راهنمای حرفه‌ای Dota 2 — پچ 7.41e</title>
+<meta name="description" content="وب‌سایت حرفه‌ای Dota 2: بیلدهای بهینه‌شده برای شروع/اوایل/وسط/آخر بازی با ۶ اسلات برای هر هیرو، کانترها، آیتم‌ها و پچ‌نوت 7.41e بر پایه متای پلیرها و استریمرهای حرفه‌ای."/>
+<style>
+:root{
+  --bg:#0a0e14;--bg2:#0f1520;--bg3:#151d2b;--bg4:#1b2433;
+  --line:#232f42;--line2:#2c3a52;
+  --txt:#e8edf5;--mut:#93a3bd;--dim:#6b7a94;
+  --gold:#d9a441;--gold2:#f0c75e;--red:#e0523f;--green:#4bbd7e;--blue:#4a9ce8;
+  --str:#e0523f;--agi:#4bbd7e;--int:#4a9ce8;--uni:#b98ee0;
+  --grad:linear-gradient(135deg,#1b2433,#0f1520);
+  --shadow:0 10px 30px rgba(0,0,0,.45);--radius:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Segoe UI',Tahoma,'Vazirmatn','Noto Sans Arabic',system-ui,sans-serif;background:var(--bg);color:var(--txt);line-height:1.6;
+  background-image:radial-gradient(1200px 600px at 80% -10%,rgba(200,110,40,.10),transparent),radial-gradient(1000px 500px at 10% 10%,rgba(60,120,220,.08),transparent);
+  min-height:100vh}
+a{color:var(--gold);text-decoration:none}
+img{display:block}
+::-webkit-scrollbar{width:11px;height:11px}::-webkit-scrollbar-thumb{background:var(--line2);border-radius:6px}::-webkit-scrollbar-track{background:var(--bg)}
+
+.topbar{position:sticky;top:0;z-index:50;background:rgba(10,14,20,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);box-shadow:0 4px 18px rgba(0,0,0,.4)}
+.nav{max-width:1320px;margin:0 auto;display:flex;align-items:center;gap:8px;padding:10px 18px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px;letter-spacing:.5px;cursor:pointer}
+.brand .logo{width:38px;height:38px;border-radius:9px;background:var(--grad);border:1px solid var(--line2);display:flex;align-items:center;justify-content:center;font-size:20px}
+.brand .gold{color:var(--gold)}
+.navlinks{display:flex;gap:4px;flex-wrap:wrap;margin-inline-start:6px}
+.navlink{padding:8px 14px;border-radius:9px;font-size:14px;color:var(--dim);cursor:pointer;font-weight:600;transition:.15s;border:1px solid transparent}
+.navlink:hover{color:var(--txt);background:var(--bg3)}
+.navlink.active{color:var(--gold2);background:var(--bg3);border-color:var(--line2)}
+.patchbadge{margin-inline-start:auto;background:linear-gradient(135deg,rgba(224,82,63,.16),rgba(200,162,74,.16));border:1px solid rgba(200,162,74,.4);color:var(--gold2);padding:6px 13px;border-radius:20px;font-size:12px;font-weight:700;display:flex;align-items:center;gap:7px}
+.patchbadge .dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);animation:pulse 1.6s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.langbtn{margin-inline-start:8px;background:linear-gradient(135deg,rgba(224,120,60,.18),rgba(60,120,220,.14));border:1px solid var(--line2);color:var(--gold2);padding:7px 14px;border-radius:20px;font-size:12px;font-weight:800;cursor:pointer;display:flex;align-items:center;gap:6px;transition:.15s}
+.langbtn:hover{border-color:var(--gold);transform:translateY(-1px)}
+.wrap{max-width:1320px;margin:0 auto;padding:22px 18px 60px}
+.view{display:none;animation:fade .28s ease}
+.view.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+.hero-banner{position:relative;border-radius:20px;overflow:hidden;margin-bottom:24px;border:1px solid var(--line2)}
+.hero-banner .bgimg{position:absolute;inset:0;background-size:cover;background-position:center 22%;filter:saturate(1.1) brightness(.5)}
+.hero-banner .ovl{position:absolute;inset:0;background:linear-gradient(100deg,rgba(10,14,20,.9) 30%,rgba(10,14,20,.45) 60%,rgba(10,14,20,.15))}
+.hero-banner .in{position:relative;padding:38px 30px;max-width:680px}
+.hero-banner h1{font-size:clamp(24px,4vw,40px);font-weight:800;line-height:1.2}
+.hero-banner h1 .gold{color:var(--gold)}
+.hero-banner p{margin-top:10px;color:var(--dim);font-size:15px;max-width:600px}
+.hb-badges{display:flex;gap:8px;margin-top:18px;flex-wrap:wrap}
+
+.chips{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:14px 0 6px}
+.chip{padding:7px 13px;border-radius:20px;background:var(--bg3);border:1px solid var(--line);color:var(--dim);font-size:12.5px;font-weight:600;cursor:pointer;transition:.14s}
+.chip:hover{color:var(--txt);border-color:var(--line2)}
+.chip.active{background:linear-gradient(135deg,rgba(200,162,74,.25),rgba(160,120,60,.15));border-color:var(--gold);color:var(--gold2)}
+.search{display:flex;align-items:center;gap:10px;background:var(--bg3);border:1px solid var(--line);border-radius:12px;padding:11px 15px;margin:14px 0 20px;max-width:520px}
+.search svg{flex:none;color:var(--dim)}
+.search input{flex:1;background:none;border:none;outline:none;color:var(--txt);font-size:15px;min-width:0}
+.search input::placeholder{color:var(--dim)}
+
+.grid{display:grid;gap:14px}
+.g-hero{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+.g-item{grid-template-columns:repeat(auto-fill,minmax(168px,1fr))}
+.g-meta{grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}
+.g-stream{grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
+
+.card{background:var(--bg2);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;cursor:pointer;transition:transform .16s,box-shadow .16s,border-color .16s;position:relative}
+.card:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:var(--line2)}
+.hero-card .pc{position:relative;aspect-ratio:1/1.05;overflow:hidden;background:linear-gradient(180deg,#1a2333,#0d1320)}
+.hero-card .pc img{width:100%;height:100%;object-fit:cover;object-position:top center;transition:transform .4s}
+.card:hover .pc img{transform:scale(1.06)}
+.scorecard{position:absolute;top:8px;inset-inline-start:8px;padding:3px 10px;border-radius:7px;font-size:12px;font-weight:800;color:#0a0e14}
+.tier-S{background:linear-gradient(135deg,#ffd76a,#f0a63a)}
+.tier-A{background:linear-gradient(135deg,#cfe0ff,#8ab3e8)}
+.tier-B{background:linear-gradient(135deg,#d5f6e2,#74cf9a)}
+.tier-C{background:linear-gradient(135deg,#e8e8e8,#aab4c0)}
+.tier-D{background:linear-gradient(135deg,#f3c9c2,#cf8a7e)}
+.tier-E{background:linear-gradient(135deg,#999,#777)}
+.diff-tag{position:absolute;top:8px;inset-inline-end:8px;background:rgba(10,14,20,.72);color:var(--gold2);padding:3px 8px;border-radius:7px;font-size:11px;font-weight:600}
+.cinfo{padding:10px 11px}
+.cinfo .cn{font-weight:700;font-size:13.5px}
+.cinfo .cf{font-size:11.5px;color:var(--dim);margin-top:2px}
+.croles{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
+.rtag{font-size:10px;padding:2px 7px;border-radius:5px;background:var(--bg4);color:var(--dim);border:1px solid var(--line)}
+.attrbar{position:absolute;bottom:0;left:0;right:0;height:4px}
+.attr-str{background:var(--str)}.attr-agi{background:var(--agi)}.attr-int{background:var(--int)}.attr-all{background:var(--uni)}
+
+.item-card{display:flex;align-items:center;gap:12px;padding:12px;cursor:pointer}
+.item-card .ic{width:50px;height:50px;border-radius:10px;overflow:hidden;flex:none;background:#202a3a;border:1px solid var(--line);position:relative}
+.item-card .ic img{width:100%;height:100%;object-fit:cover}
+.item-card .iname{font-weight:700;font-size:13px}
+.item-card .sub{font-size:11px;color:var(--dim);margin-top:2px}
+.item-card .cost{margin-inline-start:auto;color:var(--gold);font-weight:700;font-size:13px;white-space:nowrap}
+.tier-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-inline-end:6px}
+.t-basic{background:#9aa7b8}.t-upgrade{background:#4fa3e8}.t-artifact{background:#e0a13f}.t-neutral{background:#9e7bd4}
+
+.detail-top{display:grid;grid-template-columns:minmax(250px,330px) 1fr;gap:22px;background:var(--bg2);border:1px solid var(--line);border-radius:20px;padding:22px;margin-bottom:20px}
+.detail-avatar{border-radius:16px;overflow:hidden;border:1px solid var(--line2);aspect-ratio:1/1.1;background:#0d1320}
+.detail-avatar img{width:100%;height:100%;object-fit:cover;object-position:top center}
+.detail-info .hname{font-size:clamp(22px,4vw,32px);font-weight:800}
+.detail-info .hen{color:var(--gold);font-weight:700}
+.detail-info .lore{margin-top:8px;color:var(--dim);font-size:13.5px;max-width:720px}
+.statrow{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.statpill{background:var(--bg3);border:1px solid var(--line);border-radius:11px;padding:9px 14px;min-width:86px}
+.statpill .lb{font-size:10.5px;color:var(--dim);text-transform:uppercase;letter-spacing:.4px}
+.statpill .vl{font-size:16px;font-weight:800;margin-top:2px}
+.statpill .sub{font-size:11px;color:var(--dim)}
+
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin:18px 0 14px}
+.tab{padding:9px 18px;border-radius:10px;background:var(--bg3);border:1px solid var(--line);color:var(--dim);cursor:pointer;font-weight:600;font-size:13.5px;transition:.14s}
+.tab:hover{color:var(--txt)}
+.tab.active{background:linear-gradient(135deg,rgba(200,162,74,.22),rgba(160,120,60,.14));border-color:var(--gold);color:var(--gold2)}
+.panel{display:none}
+.panel.active{display:block;animation:fade .25s}
+.panelbox{background:var(--bg2);border:1px solid var(--line);border-radius:16px;padding:20px}
+.panelbox+.panelbox{margin-top:14px}
+.panel-title{font-size:17px;font-weight:800;margin-bottom:6px;display:flex;align-items:center;gap:9px}
+.panel-title .ic{color:var(--gold)}
+
+.buildsec{margin-bottom:18px}.buildsec:last-child{margin-bottom:0}
+.buildhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.buildhead h4{font-size:14.5px;font-weight:800;display:flex;align-items:center;gap:8px}
+.buildhead .when{font-size:11px;color:var(--dim)}
+.slots{display:grid;grid-template-columns:repeat(6,minmax(56px,1fr));gap:8px}
+.slot{background:var(--bg3);border:1px solid var(--line);border-radius:11px;aspect-ratio:1/1;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;cursor:default;transition:.14s}
+.slot:hover{border-color:var(--gold);transform:translateY(-2px)}
+.slot img{width:100%;height:100%;object-fit:cover}
+.slot.empty{border-style:dashed;opacity:.45}
+.slot .num{font-size:15px;color:var(--dim)}
+.slot .sname{position:absolute;bottom:0;left:0;right:0;font-size:9px;background:linear-gradient(0deg,rgba(0,0,0,.88),transparent);color:#fff;padding:14px 3px 3px;text-align:center;line-height:1.15}
+.slot .scost{position:absolute;top:2px;inset-inline-end:3px;font-size:9px;color:var(--gold2);background:rgba(0,0,0,.6);padding:1px 5px;border-radius:5px;font-weight:700}
+.slot-img-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.mini-slot{width:50px;aspect-ratio:1/1;border-radius:10px;overflow:hidden;background:var(--bg3);border:1px solid var(--line);cursor:pointer;position:relative}
+.mini-slot img{width:100%;height:100%;object-fit:cover}
+.mini-slot:hover{border-color:var(--gold)}
+.fallback-tile{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;background:linear-gradient(135deg,#24314a,#1a2333);color:var(--gold2)}
+
+.countgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.counterbox{background:var(--bg2);border:1px solid var(--line);border-radius:16px;padding:18px}
+.counterbox.bad{border-color:rgba(224,82,63,.45)}
+.counterbox.good{border-color:rgba(75,189,110,.45)}
+.counterbox h3{font-size:15px;font-weight:800;margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.counterbox .note{font-size:11.5px;color:var(--dim);margin-bottom:12px}
+.mini-hero{display:flex;align-items:center;gap:10px;padding:8px;border-radius:11px;background:var(--bg3);border:1px solid var(--line);cursor:pointer;transition:.14s}
+.mini-hero:hover{border-color:var(--gold);transform:translateX(-3px)}
+.mini-hero .av{width:44px;height:44px;border-radius:9px;overflow:hidden;flex:none;background:#1a2333}
+.mini-hero .av img{width:100%;height:100%;object-fit:cover;object-position:top}
+.mini-hero .nm{font-weight:700;font-size:13px}
+.mini-hero .rl{font-size:11px;color:var(--dim)}
+.mini-list{display:grid;gap:8px;margin-top:6px}
+
+.tierlist{display:flex;flex-direction:column;gap:12px}
+.tierrow{display:grid;grid-template-columns:54px 1fr;gap:14px;align-items:start;background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:14px}
+.tierlabel{font-size:22px;font-weight:800;color:var(--gold2);display:flex;align-items:center;justify-content:center;height:100%;min-height:56px;border-radius:10px;background:var(--bg3)}
+.tier-heroes{display:flex;flex-wrap:wrap;gap:8px}
+.tier-hero{width:62px;text-align:center;cursor:pointer}
+.tier-hero .av{aspect-ratio:1/1.05;border-radius:9px;overflow:hidden;background:#1d2333;border:1px solid var(--line)}
+.tier-hero .av img{width:100%;height:100%;object-fit:cover;object-position:top}
+.tier-hero .tn{font-size:10px;color:var(--dim);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+.itemhero{display:flex;align-items:center;gap:22px;background:var(--bg2);border:1px solid var(--line);border-radius:18px;padding:22px}
+.itemhero .big{width:100px;height:100px;border-radius:16px;overflow:hidden;background:#202a3a;border:1px solid var(--line2);flex:none}
+.itemhero .big img{width:100%;height:100%;object-fit:cover}
+.itemhero h2{font-size:26px;font-weight:800}
+.itemhero .cost{color:var(--gold2);font-weight:800;font-size:18px;margin-top:4px}
+.fallback-row{width:100%;height:100%;display:flex;align-items:center;justify-content:center}
+.slot .fallback-tile{font-size:20px}
+.descbox{background:var(--bg2);border:1px solid var(--line);border-radius:16px;padding:20px;margin-top:14px}
+.descbox h4{font-size:15px;font-weight:800;margin-bottom:10px;color:var(--gold)}
+.descbox p{color:var(--txt);font-size:14px}
+
+.patchcard{background:var(--bg2);border:1px solid var(--line);border-radius:18px;padding:24px;margin-bottom:16px}
+.patchcard h3{font-size:18px;font-weight:800;display:flex;align-items:center;gap:10px}
+.patchcard h3 .k{color:var(--gold2)}
+.patchcard .date{font-size:12px;color:var(--dim);margin-top:3px}
+.patchlist{list-style:none;margin-top:12px;columns:2;column-gap:24px}
+@media(max-width:760px){.patchlist{columns:1}}
+.patchlist li{break-inside:avoid;padding:6px 0;font-size:13px;color:var(--txt);border-bottom:1px dashed var(--line);display:flex;gap:9px;align-items:baseline}
+.patchlist li .heroN{color:var(--gold2);font-weight:700;min-width:150px;flex:none}
+.patchlist li .chg{color:var(--dim)}
+.patchlist li .pl{color:var(--green)}
+
+.streamer{display:flex;align-items:center;gap:14px;background:var(--bg2);border:1px solid var(--line);border-radius:16px;padding:16px}
+.streamer .ava{width:54px;height:54px;border-radius:50%;flex:none;background:var(--grad);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:20px;color:var(--gold2)}
+.streamer .nm{font-weight:800;font-size:15px}
+.streamer .tag{font-size:11px;color:var(--gold2);font-weight:700}
+.streamer .role{font-size:12px;color:var(--dim);margin-top:3px}
+.live{display:inline-flex;align-items:center;gap:5px;font-size:10.5px;color:var(--green);font-weight:700}
+.live .dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 1.4s infinite}
+
+.tooltip{position:fixed;z-index:200;pointer-events:none;background:#10161f;border:1px solid var(--line2);border-radius:11px;padding:10px 13px;max-width:260px;box-shadow:var(--shadow);font-size:12px;opacity:0;transition:opacity .12s;transform:translate(-50%,-100%)}
+.tooltip.show{opacity:1}
+.tooltip .tn{font-weight:800;color:var(--gold2);margin-bottom:3px}
+.tooltip .td{color:var(--dim);font-size:11.5px;line-height:1.5}
+.tooltip .tc{margin-top:5px;color:var(--gold);font-weight:700}
+
+.modal{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;background:rgba(5,8,12,.75);backdrop-filter:blur(4px);padding:18px}
+.modal.show{display:flex}
+.modalbox{background:var(--bg2);border:1px solid var(--line2);border-radius:18px;max-width:760px;width:100%;max-height:90vh;overflow:auto;padding:0;animation:pop .2s ease}
+@keyframes pop{from{transform:scale(.96);opacity:0}to{transform:none;opacity:1}}
+.modalhead{display:flex;align-items:center;gap:14px;padding:18px 20px;border-bottom:1px solid var(--line)}
+.modalhead .av{width:60px;height:60px;border-radius:12px;overflow:hidden;flex:none;background:#1d2333}
+.modalhead .av img{width:100%;height:100%;object-fit:cover}
+.modalhead .av.fb{display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;color:var(--gold2)}
+.modalbody{padding:20px}
+.closebtn{margin-inline-start:auto;background:var(--bg3);border:1px solid var(--line);color:var(--dim);width:34px;height:34px;border-radius:9px;cursor:pointer;font-size:16px;flex:none}
+.closebtn:hover{color:var(--txt);border-color:var(--gold)}
+
+.footer{border-top:1px solid var(--line);margin-top:40px;padding:28px 18px;text-align:center;color:var(--dim);font-size:12.5px}
+.footer .ftitle{color:var(--txt);font-weight:700;margin-bottom:6px;font-size:14px}
+.hr{height:1px;background:var(--line);margin:18px 0}
+.muted{color:var(--dim)}
+.empty{text-align:center;color:var(--dim);padding:50px 20px;font-size:15px}
+.backbtn{display:inline-flex;align-items:center;gap:8px;color:var(--dim);cursor:pointer;font-size:13px;font-weight:600;margin-bottom:16px;padding:8px 13px;border-radius:9px;background:var(--bg3);border:1px solid var(--line)}
+.backbtn:hover{color:var(--gold2);border-color:var(--gold)}
+.quickstats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin:20px 0}
+.qs{background:var(--bg2);border:1px solid var(--line);border-radius:16px;padding:18px}
+.qs .qn{font-size:28px;font-weight:800;color:var(--gold2)}
+.qs .ql{font-size:12.5px;color:var(--dim);margin-top:3px}
+.note{background:linear-gradient(135deg,rgba(200,162,74,.12),rgba(60,90,140,.10));border:1px solid rgba(200,162,74,.35);border-radius:14px;padding:14px 18px;font-size:13px;color:var(--txt);margin:16px 0}
+.note b{color:var(--gold2)}
+.h2{font-size:22px;font-weight:800}
+@media(max-width:860px){
+  .detail-top{grid-template-columns:1fr}
+  .countgrid{grid-template-columns:1fr}
+  .hero-banner .in{padding:26px 20px}
+  .navlinks{order:3;width:100%}
+  .patchbadge{margin-inline-start:0}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <nav class="nav">
+    <div class="brand" onclick="go('')"><div class="logo">⚔️</div><div><span class="gold">Dota</span>Guide</div></div>
+    <div class="navlinks">
+      <div class="navlink" data-nav="" onclick="go('')">خانه</div>
+      <div class="navlink" data-nav="heroes" onclick="go('heroes')">هیروها</div>
+      <div class="navlink" data-nav="items" onclick="go('items')">آیتم‌ها</div>
+      <div class="navlink" data-nav="counter" onclick="go('counter')">کانتر پیک</div>
+      <div class="navlink" data-nav="meta" onclick="go('meta')">متا و استریمرها</div>
+      <div class="navlink" data-nav="patch" onclick="go('patch')">پچ 7.41e</div>
+    </div>
+    <div class="patchbadge"><span class="dot"></span> <span id="patchbadge-txt">پچ 7.41e — جدیدترین آپدیت</span></div>
+    <button class="langbtn" id="langbtn" onclick="toggleLang()" title="Switch language">🌐 <span id="langbtn-txt">EN</span></button>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <div class="view" id="view-home">
+    <div class="hero-banner">
+      <div class="bgimg" id="home-bg"></div><div class="ovl"></div>
+      <div class="in">
+        <h1 id="hb-h1">Professional <span class="gold">Dota 2</span> Guide</h1>
+        <p id="hb-p">Optimized builds for every hero based on the latest patch meta (7.41e). Slot-based itemization for early, mid and late game, counter picks and pro strategies.</p> آیتم‌بندی دقیق برای شروع، اوایل، وسط و آخر بازی با ۶ اسلات، کانتر هیروها، و استراتژی استخراج‌شده از پلیرها و استریمرهای حرفه‌ای.</p>
+        <div class="hb-badges"><span class="chip" style="color:var(--gold2);border-color:var(--gold);cursor:default">۱۲۷ هیرو</span><span class="chip" style="cursor:default">۱۵۵ آیتم</span><span class="chip" style="cursor:default">بیلد ۶ اسلات</span><span class="chip" style="cursor:default">کانتر + متا</span></div>
+      </div>
+    </div>
+    <div class="quickstats" id="qs"></div>
+    <div class="panelbox">
+      <div class="panel-title" id="ft-title"><span class="ic">🔥</span> <span id="ft-title-txt">متابه‌ترین هیروهای پچ 7.41e</span></div>
+      <p class="muted" id="ft-sub" style="font-size:12.5px">بر اساس متای پلیرها و استریمرهای حرفه‌ای.</p>
+      <div style="height:12px"></div>
+      <div class="grid g-meta" id="featured"></div>
+    </div>
+    <div class="panelbox" style="margin-top:14px">
+      <div class="panel-title"><span class="ic">🏆</span> <span id="tl-title">Tier List هیروها (پچ 7.41e)</span></div>
+      <div style="height:12px"></div>
+      <div class="tierlist" id="tierlist"></div>
+    </div>
+  </div>
+
+  <div class="view" id="view-heroes">
+    <div class="panel-title" style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+      <h2 class="h2"><span id="heroes-h2">هیروها</span> <span class="muted" id="herocount"></span></h2>
+      <div style="margin-inline-start:auto" class="chips">
+        <span class="chip" data-attr="all" onclick="setAttr(this)">همه</span>
+        <span class="chip" data-attr="str" onclick="setAttr(this)">💪 قدرت</span>
+        <span class="chip" data-attr="agi" onclick="setAttr(this)">🏹 چابکی</span>
+        <span class="chip" data-attr="int" onclick="setAttr(this)">🧙 هوش</span>
+        <span class="chip" data-attr="all" onclick="setAttr(this)">🌟 یونیورسال</span>
+      </div>
+    </div>
+    <div class="chips" id="rolechips"></div>
+    <div class="search">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg>
+      <input id="hero-search" placeholder="جستجوی هیرو... (مثلا فانتوم، پاج، invoker)"/>
+    </div>
+    <div class="grid g-hero" id="herogrid"></div>
+    <div class="empty" id="herogrid-empty" style="display:none">هیرویی پیدا نشد.</div>
+  </div>
+
+  <div class="view" id="view-herodetail">
+    <div class="backbtn" id="backbtn" onclick="go('heroes')">→ بازگشت به هیروها</div>
+    <div id="herodetail"></div>
+  </div>
+
+  <div class="view" id="view-items">
+    <div class="panel-title" style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+      <h2 class="h2"><span id="items-h2">آیتم‌ها</span> <span class="muted" id="itemcount"></span></h2>
+      <div style="margin-inline-start:auto" class="chips" id="itemcatchips"></div>
+    </div>
+    <div class="chips" id="itemtierchips"></div>
+    <div class="search">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg>
+      <input id="item-search" placeholder="جستجوی آیتم... (مثلا بکب، بلینک، kaya)"/>
+    </div>
+    <div class="grid g-item" id="itemgrid"></div>
+    <div class="empty" id="itemgrid-empty" style="display:none">آیتمی پیدا نشد.</div>
+  </div>
+
+  <div class="view" id="view-counter">
+    <div class="panelbox">
+      <h2 class="h2" id="counter-h2">🧠 کانتر پیک (Counter Pick)</h2>
+      <p class="muted" id="counter-p" style="font-size:13px;margin-top:4px">یک هیرو انتخاب کن.</p>
+    </div>
+    <div class="grid g-hero" style="margin:18px 0" id="counterpick-grid"></div>
+    <div id="counterresult"></div>
+  </div>
+
+  <div class="view" id="view-meta">
+    <div class="panelbox">
+      <h2 class="h2" id="meta-h2">🏆 پایه بیلدها: پلیرها و استریمرهای حرفه‌ای</h2>
+      <p class="muted" id="meta-p" style="font-size:13.5px;margin-top:4px">بیلیدهای این سایت بر اساس سبک و آیتم‌بندی پلیرها، استریمرها و تیم‌های برتر رنک بالا جمع‌آوری شده.</p>
+    </div>
+    <div class="grid g-stream" style="margin-top:16px" id="streamergrid"></div>
+    <div class="note" id="meta-note" style="margin-top:20px"><b>چرا این بیلدها؟</b> بر اساس متای پلیرها و استریمرهای حرفه‌ای.</div>
+  </div>
+
+  <div class="view" id="view-patch">
+    <div class="hero-banner" style="margin-bottom:20px">
+      <div class="bgimg" style="background:linear-gradient(120deg,#1b2433,#0f1520);filter:none;opacity:1"></div><div class="ovl"></div>
+      <div class="in">
+        <h1 id="patch-h1">پچ‌نوت <span class="gold">7.41e</span></h1>
+        <p id="patch-p">جدیدترین آپدیت گیم‌پلی Dota 2 — این سایت بر اساس همین پچ ساخته شده است.</p>
+      </div>
+    </div>
+    <div class="patchcard">
+      <h3><span class="k">7.41e</span> — Gameplay Update</h3>
+      <div class="date" id="patch-date">آخرین پچ‌نوت رسمی (همراه Summer Scrub) — به‌روزرسانی با اعمال آنی در متا</div>
+      <div class="patchlist" id="patch-notes"></div>
+    </div>
+  </div>
+
+</main>
+
+<footer class="footer">
+  <div class="ftitle">⚔️ DotaGuide — راهنمای حرفه‌ای Dota 2</div>
+  <div>ساخته‌شده از داده‌های کامل ریپازیتوری poriafasor/Dota — به‌روزرسانی برای پچ 7.41e.</div>
+  <div style="margin-top:4px">Dota 2 متعلق به Valve است. این پروژه آموزشی/فن‌مید است.</div>
+</footer>
+
+<div class="modal" id="modal" onclick="if(event.target===this)closeModal()"><div class="modalbox" id="modalbox"></div></div>
+<div class="tooltip" id="tooltip"></div>
+
+<script src="d/meta.js"></script>
+<script src="d/heroes.js"></script>
+<script src="d/items.js"></script>
+<script src="d/builds1.js"></script>
+<script src="d/builds2.js"></script>
+<script src="d/builds3.js"></script>
+<script src="d/enrichments1.js"></script>
+<script src="d/enrichments2.js"></script>
+<script>
+const DATA = window.__D;
+const ITEM_KEYS = {"raindrop": "infused_raindrop", "blaze_buckler": "buckler", "chain_mail": "chainmail", "sange_yasha": "sange_and_yasha", "bkb": "black_king_bar", "bash": "abyssal_blade", "bash_bfury": "bfury", "bash_basher": "basher", "refresh_shard": "refresher_shard", "ethereal": "ethereal_blade", "medallion": "medallion_of_courage", "sage_mask": "sobi_mask", "sacred_relic": "relic", "coronet": "cornucopia"};
+const ITEM_CDN = {"tango": 1, "flask": 1, "clarity": 1, "enchanted_mango": 1, "branches": 1, "gauntlets": 1, "slippers": 1, "mantle": 1, "circlet": 1, "belt_of_strength": 1, "boots_of_elves": 1, "robe": 1, "ogre_axe": 1, "blade_of_alacrity": 1, "staff_of_wizardry": 1, "wraith_band": 1, "bracer": 1, "null_talisman": 1, "magic_wand": 1, "magic_stick": 1, "boots": 1, "wind_lace": 1, "raindrop": 1, "orb_of_venom": 1, "blight_stone": 1, "blaze_buckler": 1, "power_treads": 1, "phase_boots": 1, "tranquil_boots": 1, "arcane_boots": 1, "energy_booster": 1, "gloves": 1, "chain_mail": 1, "ring_of_protection": 1, "helm_of_iron_will": 1, "blink": 1, "force_staff": 1, "hurricane_pike": 1, "dragon_lance": 1, "manta": 1, "yasha": 1, "sange": 1, "kaya": 1, "sange_yasha": 1, "kaya_and_sange": 1, "bkb": 1, "mithril_hammer": 1, "desolator": 1, "maelstrom": 1, "mjollnir": 1, "hyperstone": 1, "butterfly": 1, "eagle": 1, "quarterstaff": 1, "talisman_of_evasion": 1, "greater_crit": 1, "broadsword": 1, "blades_of_attack": 1, "demon_edge": 1, "monkey_king_bar": 1, "javelin": 1, "bash": 1, "bash_bfury": 1, "claymore": 1, "vanguard": 1, "stout_shield": 1, "bash_basher": 1, "heart": 1, "reaver": 1, "vitality_booster": 1, "assault": 1, "platemail": 1, "shivas_guard": 1, "mystic_staff": 1, "ultimate_orb": 1, "sphere": 1, "pers": 1, "ring_of_health": 1, "void_stone": 1, "ring_of_regen": 1, "soul_ring": 1, "urn_of_shadows": 1, "spirit_vessel": 1, "mekansm": 1, "guardian_greaves": 1, "pipe": 1, "hood_of_defiance": 1, "cloak": 1, "headdress": 1, "crimson_guard": 1, "lotus_orb": 1, "sheepstick": 1, "octarine_core": 1, "soul_booster": 1, "point_booster": 1, "refresh_shard": 1, "refresher": 1, "ethereal": 1, "ghost": 1, "silver_edge": 1, "invis_sword": 1, "shadow_amulet": 1, "solar_crest": 1, "medallion": 1, "sage_mask": 1, "necronomicon": 1, "helm_of_the_dominator": 1, "rod_of_atos": 1, "heavens_halberd": 1, "orchid": 1, "bloodthorn": 1, "oblivion_staff": 1, "diffusal_blade": 1, "radiance": 1, "sacred_relic": 1, "satanic": 1, "vladmir": 1, "ring_of_basilius": 1, "mask_of_madness": 1, "echo_sabre": 1, "gungir": 1, "falcon_blade": 1, "faded_broach": 1, "witch_blade": 1, "coronet": 1, "trident": 1, "psychic_headband": 1, "pavise": 1, "stormcrafter": 1, "spell_prism": 1, "paladin_sword": 1, "unrelenting_eye": 1, "specialists_array": 1, "hydras_breath": 1, "dormant_curio": 1, "chasm_stone": 1, "diffusal_blade_2": 1, "skadi": 1, "dust": 1, "gem": 1, "glimmer_cape": 1, "blade_mail": 1, "orb_of_corrosion": 1, "bottle": 1, "ward_dispenser": 1};
+const ITEM_EXTRA = {"crystalys": "data:image/png;base64,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", "aghanims_scepter": "data:image/png;base64,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", "aghs_shard": "data:image/png;base64,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", "morbid_mask": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAIAAABt+uBvAAAEm0lEQVR4nO2bTWhcVRTHz30f85U300yamlTThGlMm7SxVYtUDIW2KG5KF120uCpdqK0bKW5UBMGVCCKCi250Ud1owU2hCkJIwRQMaFRiiaRiP5yamsl8dN5M3uTNe8/FxCAzN/fMdHLfm8L5MQzDJdx78n93zv/cj2GP7XoOiI3RACDZ2x90GB1KLrOorX8KNpQOpDZvlKDD6HRIIAQSCEEDYADw3ztRB6MZhKDRBBLBKAdhaDSBBDByMRRyMTHkYhgkEAIJhEB1kBCqg1DIxcQwKhRFUKGIQwIhkEAIJBCCBowBwNo7UQejtRgGCYRAAiGQQAhUSYtgtBbDIBfDoP0gIbQfhEICIZBACORiYsjFMKhQFEFbrjhUBwmhOggleBfrS6p9SRUAimXvz0U7qDA2gGlBRwAnDhlnjycA4Npv1rmPloIOpx76iiGQQAhsaO+R+JZksZALOhI+iZgSDXPy41LecT25Q9dkCT4HiXn+QPTd0z2N7e98lr18reRDAApjDABYp/LNzIq54jbG/eqxhKrKHbomS6fnIGvV+3ZmpbF9xyPaU4+HfQig0wUCgMlZjkAAcPTpqA+jPwQCzcxXKjYnIR8Y8WMGSU/So4P6E6lQY/vkrLV832mmh6rj/X7H3rezvpPUdk1hINvLpAt08rBx4lBXY/t3P95tvpMbaY5AYZ1t36qlM9W24sOQvhYbGdAbG9MZJ296zQ+aLXKMDAASMSUtdxUp2cUYg+FHOQJdv7naUj92lf9F6opKz6Fy94N6u9UYrw5OLzstjbjF4Auha5K3IZjkLdfuLv4/VjCdlkbsMVRuu7niSdZHss0nYvz48yV+TtmI8RTnewoAfy835YPtIFegSIjfv6a08OD7kurANo7bLmadJguFdpDrYuUKP7mODoYAyk128tJRg9s+PVeRvxEq2cX+yfGf8IvPRLo3yLt1jAzop45wyigAuPJDsxK3g1yB7i47eZOTboyo8v7LyZCOPP/RQf3C+a2REOfP5m/bPy20Vis8GNLriKmfLW77wbHwxTd7uasQAOjvUd84mfji7W09cX6EFy4XNy1EIdLPxb6cKh2fiHGT8u4d+sW3en/5Y3V6rnLzXrVkuUZUSfVrB8fCTw6HBDe3J2etq79afhzEMPlrsfk79qWrpVOH+XkEAPYPh/YP8+cRl0zBee/z/CZE1hx+nIt9eKk41Kc9O7YJuxOZgvvax9lCqYV1XHswZV0eea9q1Xv9k9xXU+2azsJf9pkPMjfSVanRrr/WZNm574WYES+bfuS8PUP6K8eMifGI2qI33Ms5n14xv/6+7LZWgbdFTRZfBaqRjCsTe8PjqdCeIX3XgMY1+1Xbu73k3FqsLqTt6bnK9Vu2J3ljrJHABPo/igKJmGJEWTymdIWZZXslyyuW3ex9V/ZWIUpNloDPxVwX8qabNwFA+qrqwaDfiwnp/HOxwCGBEEggBLrlKoJuueIEf0exsyEXw6B70kLonjQKCYRAAiGQi4khF8OgSloEVdI4VAcJoToIhVxMDLkYBgmEQAIhrB37RKJ+/O7hYURjjFUs/hUegjH2Lyj7Iz3A+W1DAAAAAElFTkSuQmCC", "bulwark": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAIAAABt+uBvAAAEKUlEQVR4nO3bTWgcZRgH8Oedmf2Y7SbpZvuRtNbVaFua0iKJggo9mdSDiCePUZAKHsSL4EUrniyU3upFlPRiPbSHlqItQpWIRahSjS0kIPZjq9Kkab52s9n5Hg8bC81O3qfd3dedyv93WJZZeHf2v+/O88w7s2LrjucJ1mYQUW5DT7t3I6bm70wZd5+1d1diqDZvtHbvRtwhIAYCYhhEgoj+fYRVBGYQw8AEkhE4BnEMTCAJgSrGQhWTQxXjICAGAmKgD5JCH8RCFZMTaBRl0CjyEBADATEQEMMgIYho5RFWETgX4yAgBgJiICAGOmkZgXMxDqoYB+tBUlgPYiEgBgJioIrJoYpx0CjKYMmVhz5ICn0QC1VMDlWMg4AYCIiBgBgIiGEIIYhIPCTXxTIpMTSYqd/+x9/uRNFp+dsJIYyWD3rX4z2Grq/O3XbCP2e8hsd0PDo4sj5hrB72zI+VD4+1PiCq/aFOhYHtqdH3NtZv//xs+ZNTiw0P6/mhH1Cibntvt6oPouoYNDKcjdx++kKlmWF7uvV0MuJo0JVV9UGUjKsJem53un771Jz/VxO/LyJ68ZmIAxARWXbYzLASSgLqzRuR3/Pteb+ZYfOd+mv7oyfm/FLQzMgSSs7FsmZ07oUeI5XQbLeRb7u/kDj0Zne+U4989dLvtprTSTXnYpYTHUHXOu3jAzkz9WCfpP+x5KEDuS/e31TYHH0kDgIaG7ceeC/vj5L1oOkF3w9Ijwr/hQGzv5D89KvSuZ+qkqmkabTr0eS+PanhQfOJLfVV6x4nv6/cnPHUTCA1S662E/521R7Ynop8tTevf/R67t1Xuy5O2pevOXPlwHLChEGZlJbv1Dbn9L4tiR2PJNal72unJorO0VOLitpcoa4POn6+slZANR0ZbWjQHBo0m3mXy9ecd47OVixVJYzU9UHf/Vr95ueqosGJyPXCz74uv3F4ZrGiqn7VKFxRPHhswfPppWebmiP1KlZ49uLy6LmlqTlf/UKoynMx1ws/GJ0//0v1rZc7dm5jDrSsG1Pe+FXnwhXrhyu201Cj0BiFAdWMjVtj49auQmLfnvRTTyb7eo2NXbom/WWXloO5UnB7wb857d2Y9q7f8iaK7oKyVlBOeUA1k0V3sujWnmsa5bJa1tTSSaFrpGvC80PbDR0vrNphaTl0vf9ugrDacF0sCGm2HMyW154R8VmbwnUxVlyui23bZKzPCiK6sxjcmm3qnLalYvN/sbdfye5/2iSiL7+tHDlRavfurMDNCzwExBB9e4cz2Y7lpXK79yR2arFgBjHwfzEp/F+MhYAYCIgRl0YxntAo8uJyLhZXqGIc3CcthfUgFgJiICAGqpgcqhgHnbQMOmke+iAp9EEsVDE5VDEOAmIgIMbK7S9ps8X3gf1vGEII21J1k/HDTgjxD6YACu1HWhZcAAAAAElFTkSuQmCC", "oblivions_lullaby": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAIAAABt+uBvAAAD+UlEQVR4nO2b30tTcRTAz9nu7tyappmWWlkrlRQMCUGs3rJeQop6zT8giB56zHyo1+ghIt+iHqKQoPKlX0RQEGQl/ZIIxSwStdTa2tp2t3tvD7My9909N/W77cL5MMb4CvseP/fce8793u+wpr4dmOwoAFC2em2+wyhQvk1PKn8+5TeUAiSdN658h1HosCACFkSgACAA/H5nFoCcQQQKJ5AVyNcgCoUTyALkKkbCVcwarmIULIiABRFwH2QJ90EkXMWsQW4UreBGkYYFEbAgAhZEoAAiAMy9MwtAvhejYEEELIiABRE4o5Nu2uhtqfNmjt8ZiE6HdHnzolPuxdoafccOlWaOvx7VpkOGzJm5ilE4ZD3IIjypkfN6EAkLImBBBM6oYtlB2RchziACZzSK2ZCeP3wNInFIH5QN+SnEGUTglCqWt1aaM4iABRGwIAIWRMCCCBREBAAs7Odi2aJDRKmRIz8XI2FBBCyIgAUROFuQaUqfwhn3YqoiDk9LAd+LAQD4vOI4YwnpKZSL9aD9O/zBas+CQS1p9vaHdXuPRQM+cXzxpCl7PUj6kuu6CuXk4TJ3RgZcvhsxDLvzblijZA4aJoQihuOXXPe1+TPtAMD1R1H7XxKsEgiamNG1lPRTTLqgljo1c3Dqm/75a8rmN2yt9ZSXuDPHP04llxSZPaRXsepywf82Oavbn/HgroBw/Pl7TX7xlV/FPKIKLRwU0trgPbDLL/zT4zfxxYdlG+mCIjHBZaKuRikvoac+sNN/7ugql0jmyxFtZNzuSboUpAsanRBcKTwKnj2yqkp09gGAquDeVt/V7oqertIiVaDHNOH8zfAyB5oF6X3Qk6FEx3Zf5nhzUL1xqvLJUOLpu8SnL6m4Zvq8uL5Cadmitjd5i/1WR+5C/48Xw1oumn8E3NS8e0WgJBqRdUCKVLx1urKyVJwsi+DKg+iZvtByfZsFaS2ueVVMyiuuQc+lUGo5dlrGEuaJi9/P9IXlRfvvCwDQJVcPAAIMvEsc750NRRe/21JLmdceRju7v9x+GsuNm79ags0d/kDxz8iPpR9ha8pLXF17Ap3tvpUr7FYG04RXo9q9Z/H7L2IzYam7WQWkteROUBq3C7ZtVhtrPQ3rPfXrlMoyt9+L6bZIN+B7xJgN6+Mz+tBYcuhD8u2YJuwSckNai+AeRyq6AYPD2uCwNn/Q7YIiFX8mzBwsgP0vuRYkRDcgGi88NwDAvxcj4OdiJCyIgAUROHuXq2yQM4jEGc/F8gdXMQqH75OWDe+TJmFBBCyIgKuYNVzFKLiTtoI7aRrugyzhPoiEq5g1XMUoWBABCyKYe+xT5BNswGAg/XOoRDwXW7WcCCL+AgEP6cojJX0dAAAAAElFTkSuQmCC", "gossip_garment": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAIAAABt+uBvAAAE8ElEQVR4nO2bTWwbRRTH5+2uP9Zu4vqjqUuUQCLUNFCCQls1CooAlRYJRQUJyBUhASpfRZQKIU5c6AFVFSACJw4gwgUEooAEUi4BqRUiRUoQqpoQ2kJS4iaOna2/1t6d4eDWjeLJjpvEsz68n1bWem15n/+emf+bN2No3dlPkLXRCCHhWNztMBqU1OK8VjlzN5QGpNxuFLfDaHRQIAEokACNECCE3HhEVgHYggRo2ICcAByDRGjYgBwAdDEh6GLOoIuJQIEEoEACMA9yBPMgIehizgAmik5goigGBRKAAglAgQRoBIAQcv0RWQXgXEwECiQABRKAAgnATNoJwLmYCHQxEVgPcgTrQUJQIAEokAB0MWfQxURgougEllzFYB7kCOZBQtDFnEEXE6HJv6UCpDWmdezw3BZVW8JquEnVfeDTgDJiU2ZTUrJYvsjyJsub1MjSdIamszS5bCdS9nKWSo5WnkD7dvkO3BfYfYd3Z5vH51lnjy4U2UvvL4xfMDc3NgfkCXS4P3i4P7jBD/F7Yd3irg8cgwRoAEAIgfqvi8EmGSUASIi2ci8XBmlCCGVkbsGaW7QW0nTpmt0SVg/u0TW1EVMNeQJRxv64WBw9l5+YMS/8W8qbjBDS3qK9+kTooV5dWVucq2l7Zq5k5CilxKbkasqWFjORKdCJkbRZYpWnCpDnBpuffbTJo3G0MUtsbKLw3dns79PFbF62ta9EnkAr1Qn44OQL0f67/dVvo4x8NZb58BvDyLmpSwUXxiCfBz54Jba3y1f90uyC9dYnS5MzRflRrYULc7HXh7Zy1Tn/T+nF9xZT12gjTQylu9hAj3/oQU66eGneOnJqUf5MQojUepAC5NhToerrRYsd+zi5nKMN1HTKgNyS66G9ekec02ZHRjMX/7MaTRxyY21eHgf36NUXKSUjo5nq614Nuto95fPzl0uWzarfIwGpAvXdxfH1yb+LSYMz9MRCymdvbiufP3x8PmlIzQ8ryHOxUFAJ+jl3+WuutMbdwfGpHCRWFLfo/G9YKLnTd2pEXhdLZ/gW3rJV5V6/krR7n79Sz4hqQl4LyhZYeYK6iv3dvsacx5dRbg5B9T/Gpzil0lBQefKBgJwAbu0g0tfFxiYK3OsvP97cueOWO/uBXv/xIU7aubkoK1ys7scPvxYW0hy3Dvph+Gi0+3ZvLR8CAH3d/uGj0ZNHIvGwWu8mJDWTNots+NvM209zfvZ4RP30jehP44Xvz+b/vFTMFlaPVpEmZXeHt6fT88g+vTV2c1yva+Qgv9xx+kyu907PY/cHql/yaDDYpw/26YyRRMo2cjRnMq8GzQGlKQChoDvrCy7Ug94ZWY40qwP3cCoeZQBIPKLGI3z7l4wLP4tlk9c+Wvp8NEs3nCFKmKC5024pJae+NJ55d/Hc1DqLh4yRr3/JnfjC2NzAqoHOew8FgltyWc58Wg672j2D+/0DPf62bTX1qaRBf/wtf/pMfnrOqmtgZVncF6jC9rDa1aZ1xLXtYTXarOg+8GpgU5bJs5zJkgadni1NzVqXE9bG+2YtlGVxZ+GQSyJlJ1L2z5PyNibUAq7NC8Bdrk4AtiAhuEfRGdyjKAL3STuC+6SFoEACUCAB6GLOoIuJwEzaCcykxWAe5AjmQULQxZxBFxOBAglAgQRcr0n7dc7uQYSU/w5lFvibLhAA+B8mSWm6zbr10QAAAABJRU5ErkJggg==", "observer_ward": "data:image/png;base64,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", "sentry_ward": "data:image/png;base64,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", "ring_of_wraith_band": "data:image/png;base64,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"};
+</script>
+<script>
+"use strict";
+const H=DATA.heroes, IT=DATA.items, B=DATA.builds, E=DATA.enrichments;
+const byId={};H.forEach(h=>byId[h.id]=h);
+const itemById={};IT.forEach(i=>itemById[i.id]=i);
+const HERO_IMG=id=>'https://cdn.steamstatic.com/apps/dota2/images/dota_react/heroes/'+id+'.png';
+const ITEM_IMG=id=>ITEM_CDN[id]?('https://cdn.steamstatic.com/apps/dota2/images/dota_react/items/'+(ITEM_KEYS[id]||id)+'.png'):(ITEM_EXTRA[id]||BLANK);
+const hasItemImg=id=>!!(ITEM_CDN[id]||ITEM_EXTRA[id]);
+const BLANK='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+const esc=s=>(s==null?'':String(s)).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+/* ---------------- i18n ---------------- */
+let LANG='en';
+const I18N={
+ home:{en:'Home',fa:'خانه'},heroes:{en:'Heroes',fa:'هیروها'},items:{en:'Items',fa:'آیتم‌ها'},
+ counter:{en:'Counter Pick',fa:'کانتر پیک'},meta:{en:'Meta & Streamers',fa:'متا و استریمرها'},
+ patch:{en:'Patch 7.41e',fa:'پچ 7.41e'},
+ patchBadge:{en:'Patch 7.41e — latest update',fa:'پچ 7.41e — جدیدترین آپدیت'},
+ heroBannerT:{en:'Professional <span class="gold">Dota 2</span> Guide',fa:'راهنمای حرفه‌ای <span class="gold">Dota 2</span>'},
+ heroBannerP:{en:'Optimized builds for every hero based on the latest patch meta (7.41e). Slot-based itemization for early, mid and late game, counter picks and professional pro-player & streamer strategies.',fa:'بیلدهای بهینه‌شده برای هر هیرو بر اساس متای جدیدترین پچ (۷.۴۱e). آیتم‌بندی دقیق برای شروع، اوایل، وسط و آخر بازی با ۶ اسلات، کانتر هیروها، و استراتژی پلیرها و استریمرهای حرفه‌ای.'},
+ heroCount:{en:'heroes',fa:'هیرو'},itemCount:{en:'items',fa:'آیتم'},buildCount:{en:'full builds',fa:'بیلد کامل'},
+ counterCount:{en:'with counters',fa:'با کانتر'},patchCount:{en:'latest patch',fa:'آخرین پچ'},
+ featT:{en:'🔥 Meta heroes of patch 7.41e',fa:'🔥 متابه‌ترین هیروهای پچ 7.41e'},
+ featSub:{en:'Based on the meta of pro players & streamers — highest win rate.',fa:'بر اساس متای پلیرها و استریمرهای حرفه‌ای — برای بیشترین درصد برد.'},
+ tierT:{en:'🏆 Hero Tier List (patch 7.41e)',fa:'🏆 Tier List هیروها (پچ 7.41e)'},
+ heroesH2:{en:'Heroes',fa:'هیروها'},itemsH2:{en:'Items',fa:'آیتم‌ها'},
+ searchHero:{en:'Search hero... (e.g. Phantom, PA, invoker)',fa:'جستجوی هیرو... (مثلا فانتوم، پاج، invoker)'},
+ searchItem:{en:'Search item... (e.g. BKB, Blink, kaya)',fa:'جستجوی آیتم... (مثلا بکب، بلینک، kaya)'},
+ all:{en:'All',fa:'همه'}, allTiers:{en:'All tiers',fa:'همه تیره‌ها'},
+ consumable:{en:'Consumable',fa:'مصرفی'},early:{en:'Early',fa:'اوایل'},mid:{en:'Mid',fa:'وسط'},late:{en:'Late',fa:'آخر'},
+ neutral:{en:'Neutral',fa:'نوترال'},basic:{en:'Basic',fa:'پایه'},upgrade:{en:'Upgrade',fa:'ارتقا'},artifact:{en:'Artifact',fa:'آرت‌فکت'},
+ attrStr:{en:'Strength',fa:'قدرت'},attrAgi:{en:'Agility',fa:'چابکی'},attrInt:{en:'Intelligence',fa:'هوش'},attrAll:{en:'Universal',fa:'یونیورسال'},
+ stStr:{en:'STR',fa:'قدرت'},stAgi:{en:'AGI',fa:'چابکی'},stInt:{en:'INT',fa:'هوش'},
+ stMS:{en:'Move Speed',fa:'ماسپید'},stRange:{en:'Range',fa:'بُرد'},
+ stMelee:{en:'Melee',fa:'نزدیک'},stRanged:{en:'Ranged',fa:'بُعد'},stDiff:{en:'Difficulty',fa:'سختی'},
+ perLvl:{en:'/level',fa:'/لول'},notFound:{en:'Hero not found.',fa:'هیرو پیدا نشد.'},
+ tabCore:{en:'Core Build',fa:'بیلد کری'},tabSup:{en:'Support Build',fa:'بیلد ساپورت'},
+ tabCount:{en:'Counters',fa:'کانترها'},tabGuide:{en:'Guide & Combos',fa:'راهنما و کامبو'},
+ build:{en:'Build',fa:'بیلد'},patchLbl:{en:'patch',fa:'پچ'},
+ starting:{en:'Starting Items',fa:'شروع بازی'},earlyG:{en:'Early Game',fa:'اوایل بازی'},
+ midG:{en:'Mid Game',fa:'وسط بازی'},lateG:{en:'Late Game (6-Slot)',fa:'آخر بازی (۶ اسلات)'},
+ situational:{en:'Situational',fa:'موقعیتی'},earlyNote:{en:'0–15 min',fa:'۰–۱۵ دقیقه'},midNote:{en:'15–30 min',fa:'۱۵–۳۰ دقیقه'},lateNote:{en:'30+ min',fa:'۳۰+ دقیقه'},
+ noBuild:{en:'No build available for this role.',fa:'بیلد برای این نقش موجود نیست.'},
+ countsOf:{en:'Counters of',fa:'کانترهای'},theyCounter:{en:'These heroes counter',fa:'این هیروها را کانتر می‌کنند'},
+ strongAgainst:{en:'is strong against',fa:'در برابر'},beats:{en:'easily counters these heroes',fa:'به راحتی کانتر می‌کند'},
+ counterFor:{en:'Counter analysis for',fa:'تحلیل کانتر برای'},
+ combo:{en:'Combos',fa:'کامبو'},playstyle:{en:'Playstyle',fa:'سبک بازی'},skillBuild:{en:'Skill Build',fa:'ترتیب اسکل'},
+ desc:{en:'Description',fa:'توصیف'},ability:{en:'Ability',fa:'توانایی'},goodFor:{en:'Good for',fa:'مناسب برای'},components:{en:'Components',fa:'ترکیبات'},
+ streamT:{en:'🏆  Build basis: Pro Players & Streamers',fa:'🏆 پایه بیلدها: پلیرها و استریمرهای حرفه‌ای'},
+ streamP:{en:'The builds on this site are based on the itemization of high-MMR pros, streamers and top teams (highest win rate). Every hero is split by role (core/support) and phase (early/mid/late).',fa:'بیلدهای این سایت بر اساس آیتم‌بندی پلیرها، استریمرها و تیم‌های برتر رنک بالا (بیشترین درصد برد) جمع‌آوری شده. برای هر هیرو بیلد به نقش و فاز بازی تقسیم می‌شود.'},
+ streamWhy:{en:'Why these builds?',fa:'چرا این بیلدها؟'},
+ streamWhyP:{en:'Each build is based on the meta — the item combination with which pros and high-MMR players have the highest win rate. Itemization is split into phases and six slots to follow the real game flow.',fa:'هر بیلد بر اساس «متا» ساخته شده — ترکیب آیتمی که پلیرها و استریمرهای حرفه‌ای با آن بالاترین درصد برد را دارند.'},
+ patchT:{en:'Patch Notes 7.41e',fa:'پچ‌نوت 7.41e'},
+ patchP:{en:'The latest Dota 2 gameplay update (7.41e). This whole site is built around this patch.',fa:'جدیدترین آپدیت گیم‌پلی Dota 2 — این سایت بر اساس همین پچ ساخته شده است.'},
+ patchnotes:{en:'Gameplay Update — latest official patch (with Summer Scrub)',fa:'آخرین پچ‌نوت رسمی — با Summer Scrub'},
+ buff:{en:'BUFF',fa:'باف'},nerf:{en:'NERF',fa:'نرف'},
+ counterPageT:{en:'🧠 Counter Pick',fa:'🧠 کانتر پیک'},
+ counterPageP:{en:'Pick a hero to see who counters it and who it beats.',fa:'یک هیرو انتخاب کن تا ببینی کدام هیروها او را کانتر می‌کنند و در برابر کدام قوی است.'},
+ heroNot:{en:'No hero found.',fa:'هیرویی پیدا نشد.'},itemNot:{en:'No item found.',fa:'آیتمی پیدا نشد.'},
+ backHeroes:{en:'← Back to Heroes',fa:'→ بازگشت به هیروها'},
+};
+const t=k=>((I18N[k]&&I18N[k][LANG])||(I18N[k]&&I18N[k].en)||k);
+function ln(o){if(!o)return '';return o[LANG]||o.en||o.fa||'';}
+const heroName=h=>ln(h&&h.name);
+const buildOf=h=>B[h.id]||{core:{},support:{},combos:{},playstyle:{},skillBuild:{},counters:[],goodAgainst:[],difficulty:2,patchTier:3};
+const getItem=id=>itemById[id];
+const tierLabel=h=>{const v=(buildOf(h.id).patchTier)||3;return v===1?'S':v===2?'A':v===3?'B':v===4?'C':'D';};
+const tierRank=l=>({S:5,A:4,B:3,C:2,D:1}[l]||0);
+const heroAttrT={str:'attrStr',agi:'attrAgi',int:'attrInt',all:'attrAll'};
+const attrT=a=>t(heroAttrT[a]||'attrAll');
+const catKey={consumable:'consumable',early:'early',mid:'mid',late:'late',neutral:'neutral'};
+const tierKey={basic:'basic',upgrade:'upgrade',artifact:'artifact',neutral:'neutral'};
+function setLang(l){LANG=l;try{localStorage.setItem('dlang',l);}catch(e){}document.documentElement.setAttribute('lang',l);document.documentElement.setAttribute('dir',l==='fa'?'rtl':'ltr');const lb=document.getElementById('langbtn-txt');if(lb)lb.textContent=l==='fa'?'فا':'EN';renderStatic();route();}
+function toggleLang(){setLang(LANG==='en'?'fa':'en');}
+function renderStatic(){
+  const set=(id,key,mode)=>{const el=document.getElementById(id);if(!el)return;if(mode==='placeholder')el.placeholder=t(key);else if(mode==='html')el.innerHTML=t(key);else el.textContent=t(key);};
+  set('patchbadge-txt','patchBadge');
+  set('hb-h1','heroBannerT','html');
+  set('hb-p','heroBannerP');
+  set('ft-title-txt','featT');
+  set('ft-sub','featSub');
+  set('tl-title','tierT');
+  set('heroes-h2','heroesH2');
+  set('items-h2','itemsH2');
+  set('counter-h2','counterPageT','html');
+  set('counter-p','counterPageP');
+  set('meta-h2','streamT','html');
+  set('meta-p','streamP');
+  set('meta-note','streamWhyP');
+  set('patch-h1','patchT','html');
+  set('patch-p','patchP');
+  set('patch-date','patchnotes');
+  set('backbtn','backHeroes');
+  set('hero-search','searchHero','placeholder');
+  set('item-search','searchItem','placeholder');
+  const hq=document.getElementById('herogrid-empty');if(hq)hq.textContent=t('heroNot');
+  const iq=document.getElementById('itemgrid-empty');if(iq)iq.textContent=t('itemNot');
+}
+
+/* routing */
+function go(r){location.hash='#/'+r;}
+function route(){
+  const hash=(location.hash||'#/').replace('#/','');
+  const parts=hash.split('/');
+  const v=parts[0]||'home';
+  document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('.navlink').forEach(n=>n.classList.toggle('active',n.dataset.nav===v));
+  window.scrollTo({top:0,behavior:'auto'});
+  const targets={home:'view-home',heroes:'view-heroes',herodetail:'view-herodetail',hero:'view-herodetail',items:'view-items',counter:'view-counter',meta:'view-meta',patch:'view-patch'};
+  const el=targets[v];if(!el){document.getElementById('view-home').classList.add('active');renderHome();return;}
+  document.getElementById(el).classList.add('active');
+  if(v==='home')renderHome();
+  else if(v==='heroes')renderHeroes();
+  else if(v==='hero'||v==='herodetail')renderHeroDetail(parts[1]);
+  else if(v==='items')renderItems();
+  else if(v==='counter')renderCounter();
+  else if(v==='meta')renderMeta();
+  else if(v==='patch')renderPatch();
+}
+window.addEventListener('hashchange',route);
+
+/* home */
+function renderHome(){
+  const img=H[Math.floor(Math.random()*H.length)];
+  const bg=document.getElementById('home-bg');if(bg)bg.style.backgroundImage="url('"+HERO_IMG(img.id)+"')";
+  document.getElementById('qs').innerHTML=
+    `<div class="qs"><div class="qn">${H.length}</div><div class="ql">${t('heroCount')}</div></div>`+
+    `<div class="qs"><div class="qn">${IT.length}</div><div class="ql">${t('itemCount')}</div></div>`+
+    `<div class="qs"><div class="qn">${Object.keys(B).length}</div><div class="ql">${t('buildCount')}</div></div>`+
+    `<div class="qs"><div class="qn">${Object.values(B).filter(b=>b.counters&&b.counters.length).length}</div><div class="ql">${t('counterCount')}</div></div>`+
+    `<div class="qs"><div class="qn">7.41e</div><div class="ql">${t('patchCount')}</div></div>`;
+  const sorted=[...H].sort((a,b)=>tierRank(tierLabel(b))-tierRank(tierLabel(a))||a.name.en.localeCompare(b.name.en));
+  document.getElementById('featured').innerHTML=sorted.slice(0,8).map(h=>heroCard(h)).join('');
+  renderTierList();
+}
+function renderTierList(){
+  const order=['S','A','B','C','D'];const by={S:[],A:[],B:[],C:[],D:[]};
+  H.forEach(h=>by[tierLabel(h)].push(h));
+  document.getElementById('tierlist').innerHTML=order.filter(x=>by[x].length).map(x=>
+    `<div class="tierrow"><div class="tierlabel">${x}</div><div class="tier-heroes">${by[x].map(h=>
+      `<div class="tier-hero" onclick="go('hero/${h.id}')"><div class="av"><img src="${HERO_IMG(h.id)}" loading="lazy" onerror="this.style.display='none'"></div><div class="tn">${esc(heroName(h))}</div></div>`).join('')}</div></div>`).join('');
+}
+function heroCard(h){
+  const b=buildOf(h.id);const tl=tierLabel(h);
+  return `<div class="card hero-card" onclick="go('hero/${h.id}')">
+    <div class="pc"><img src="${HERO_IMG(h.id)}" loading="lazy" onerror="this.style.display='none'">
+      <div class="scorecard tier-${tl}">${tl}</div>
+      <div class="attrbar attr-${h.primaryAttr}"></div>
+    </div>
+    <div class="cinfo"><div class="cn">${esc(heroName(h))}</div>
+      <div class="croles">${(h.roles||[]).slice(0,3).map(r=>`<span class="rtag">${r}</span>`).join('')}</div>
+    </div>
+  </div>`;
+}
+
+/* heroes */
+let heroFilter={attr:'all',role:'all'};
+function setAttr(el){heroFilter.attr=el.dataset.attr;document.querySelectorAll('[data-attr]').forEach(c=>c.classList.toggle('active',c===el));renderHeroes();}
+function setRole(el){heroFilter.role=el.dataset.role;document.querySelectorAll('[data-role]').forEach(c=>c.classList.toggle('active',c===el));renderHeroes();}
+const ALLROLES=['Carry','Support','Initiator','Disabler','Nuker','Pusher','Durable','Escape'];
+function renderHeroes(){
+  const rc=document.getElementById('rolechips');
+  if(rc&&!rc.dataset.init){rc.dataset.init=1;
+    rc.innerHTML='<span class="chip" data-role="all" onclick="setRole(this)">'+t('all')+'</span>'+ALLROLES.map(r=>`<span class="chip" data-role="${r}" onclick="setRole(this)">${r}</span>`).join('');
+    const fr=rc.querySelector&&rc.querySelector('[data-role="all"]');if(fr)fr.classList.add('active');
+  }
+  const q=(document.getElementById('hero-search').value||'').toLowerCase();
+  const list=H.filter(h=>{
+    if(heroFilter.attr!=='all'&&h.primaryAttr!==heroFilter.attr)return false;
+    if(heroFilter.role!=='all'&&!(h.roles||[]).includes(heroFilter.role))return false;
+    if(q&&!(h.name.en.toLowerCase().includes(q)||(h.name.fa||'').toLowerCase().includes(q)||h.id.includes(q)))return false;
+    return true;
+  }).sort((a,b)=>tierRank(tierLabel(b))-tierRank(tierLabel(a)));
+  document.getElementById('herocount').textContent='('+list.length+')';
+  document.getElementById('herogrid').innerHTML=list.map(h=>heroCard(h)).join('');
+  document.getElementById('herogrid-empty').style.display=list.length?'none':'block';
+}
+function initHeroSearch(){const s=document.getElementById('hero-search');if(s)s.addEventListener('input',()=>renderHeroes());}
+
+/* detail */
+function showTab(tab,id){document.querySelectorAll('#view-herodetail .tab').forEach(x=>x.classList.remove('active'));tab.classList.add('active');document.querySelectorAll('#view-herodetail .panel').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');}
+function renderHeroDetail(id){
+  const h=byId[id];const box=document.getElementById('herodetail');
+  if(!h){box.innerHTML='<div class="empty">'+t('notFound')+'</div>';return;}
+  const b=buildOf(h.id),tl=tierLabel(h);const st=h.stats||{};const roles=h.roles||[];
+  const stats=[[t('stStr'),st.strBase,st.strGain],[t('stAgi'),st.agiBase,st.agiGain],[t('stInt'),st.intBase,st.intGain],[t('stMS'),h.moveSpeed,''],[t('stRange'),h.range,''],[t('stMelee'),h.attackType==='melee'?t('stMelee'):t('stRanged'),''],[t('stDiff'),'★'.repeat(b.difficulty||2),'']];
+  box.innerHTML=`
+    <div class="detail-top">
+      <div class="detail-avatar"><img src="${HERO_IMG(h.id)}" onerror="this.style.display='none'"></div>
+      <div class="detail-info">
+        <div class="hname">${esc(heroName(h))} <span class="hen">(${esc(h.name.en||'')})</span></div>
+        <div style="margin-top:8px"><span class="scorecard tier-${tl}" style="position:static">Tier ${tl}</span> <span class="chip" style="cursor:default;margin-inline-start:8px">${attrT(h.primaryAttr)}</span></div>
+        <div class="lore">${esc(ln(h.lore))}</div>
+        <div class="statrow">${roles.map(r=>`<span class="rtag" style="font-size:12px;padding:4px 10px">${r}</span>`).join('')}</div>
+        <div class="statrow">${stats.map(s=>`<div class="statpill"><div class="lb">${s[0]}</div><div class="vl">${s[1]}</div>${s[2]?'<div class="sub">+'+s[2]+' '+t('perLvl')+'</div>':''}</div>`).join('')}</div>
+      </div>
+    </div>
+    <div class="tabs">
+      <div class="tab active" onclick="showTab(this,'b-core')">${t('tabCore')}</div>
+      <div class="tab" onclick="showTab(this,'b-sup')">${t('tabSup')}</div>
+      <div class="tab" onclick="showTab(this,'b-count')">${t('tabCount')}</div>
+      <div class="tab" onclick="showTab(this,'b-guide')">${t('tabGuide')}</div>
+    </div>
+    <div class="panel active" id="b-core">${buildPanel(b.core,'Core')}</div>
+    <div class="panel" id="b-sup">${buildPanel(b.support,'Support')}</div>
+    <div class="panel" id="b-count">${countPanel(h)}</div>
+    <div class="panel" id="b-guide">${guidePanel(b)}</div>`;
+}
+function buildPanel(rb,label){
+  if(!rb||!rb.early)return `<div class="panelbox"><div class="empty">${t('noBuild')}</div></div>`;
+  return `<div class="panelbox">
+    <div class="panel-title">⚔️ ${t('build')} ${label} — ${t('patchLbl')} 7.41e</div>
+    <div class="buildsec"><div class="buildhead"><h4>🛒 ${t('starting')}</h4></div><div class="slots">${slotRow(rb.starting)}</div></div>
+    <div class="hr"></div>
+    <div class="buildsec"><div class="buildhead"><h4>🌱 ${t('earlyG')}</h4><span class="when">${t('earlyNote')}</span></div><div class="slots">${slotRow(rb.early)}</div></div>
+    <div class="hr"></div>
+    <div class="buildsec"><div class="buildhead"><h4>⚡ ${t('midG')}</h4><span class="when">${t('midNote')}</span></div><div class="slots">${slotRow(rb.mid)}</div></div>
+    <div class="hr"></div>
+    <div class="buildsec"><div class="buildhead"><h4>💥 ${t('lateG')}</h4><span class="when">${t('lateNote')}</span></div><div class="slots">${slotRow(rb.late)}</div></div>
+    <div class="hr"></div>
+    <div class="buildsec"><div class="buildhead"><h4>${t('situational')}</h4></div>
+    <div class="slot-img-row">${(rb.situational||[]).map(id=>miniItem(id)).join('')}</div></div>
+  </div>`;
+}
+function slotRow(ids){const arr=(ids||[]).slice(0,6);while(arr.length<6)arr.push(null);return arr.map((id,idx)=>id?itemSlot(id):`<div class="slot empty"><span class="num">${idx+1}</span></div>`).join('');}
+function itemSlot(id){const it=getItem(id);if(!it)return '<div class="slot empty"><span class="num">?</span></div>';
+  return `<div class="slot" onmouseover="tip(this,'${esc(ln(it.name))}','${esc(ln(it.description)).slice(0,150)}',${it.cost||0})" onmouseout="hideTip()" onclick="openItemModal('${id}')">
+    ${itemImgOrTile(it)}
+    <div class="sname">${esc(ln(it.name))}</div><div class="scost">${it.cost||0}</div>
+  </div>`;}
+function miniItem(id){const it=getItem(id);if(!it)return '';return `<div class="mini-slot" onmouseover="tip(this,'${esc(ln(it.name))}','${esc(ln(it.description)).slice(0,110)}',${it.cost||0})" onmouseout="hideTip()" onclick="openItemModal('${id}')">${itemImgOrTile(it)}</div>`;}
+function itemImgOrTile(it){return `<img src="${ITEM_IMG(it.id)}" loading="lazy" onerror="this.parentNode.classList.add('fb');this.style.display='none'">`;}
+function countPanel(h){
+  const b=buildOf(h.id);const cnt=b.counters||[];const good=b.goodAgainst||[];
+  return `<div class="countgrid">
+    <div class="counterbox bad"><h3>🛡️ ${t('countsOf')} ${esc(heroName(h))}</h3>
+      <div class="note">${t('theyCounter')} ${esc(heroName(h))}.</div>
+      <div class="mini-list">${cnt.map(cid=>{const c=byId[cid];return c?miniHero(c):'';}).join('')||'<div class="muted">—</div>'}</div></div>
+    <div class="counterbox good"><h3>✅ ${esc(heroName(h))} ${t('strongAgainst')}</h3>
+      <div class="note">${t('beats')}.</div>
+      <div class="mini-list">${good.map(cid=>{const c=byId[cid];return c?miniHero(c):'';}).join('')||'<div class="muted">—</div>'}</div></div>
+  </div>`;}
+function miniHero(h){return `<div class="mini-hero" onclick="go('hero/${h.id}')"><div class="av"><img src="${HERO_IMG(h.id)}" onerror="this.style.display='none'"></div><div><div class="nm">${esc(heroName(h))}</div><div class="rl">${esc(h.name.en||'')}</div></div></div>`;}
+function guidePanel(b){const pf=o=>{const x=ln(o);return x?esc(x):'—';};
+  return `<div class="panelbox">
+    <div class="panel-title">📖 ${t('combo')}</div><p>${pf(b.combos)}</p>
+    <div class="hr"></div>
+    <div class="panel-title">🎯 ${t('playstyle')}</div><p>${pf(b.playstyle)}</p>
+    <div class="hr"></div>
+    <div class="panel-title">🧬 ${t('skillBuild')}</div><p>${pf(b.skillBuild)}</p>
+  </div>`;}
+
+/* items */
+let itemFilter={cat:'all',tier:'all'};
+function setItemCat(el){itemFilter.cat=el.dataset.cat;document.querySelectorAll('[data-cat]').forEach(c=>c.classList.toggle('active',c===el));renderItems();}
+function setItemTier(el){itemFilter.tier=el.dataset.tier;document.querySelectorAll('[data-tier]').forEach(c=>c.classList.toggle('active',c===el));renderItems();}
+function renderItems(){
+  const cc=document.getElementById('itemcatchips');
+  if(cc&&!cc.dataset.init){cc.dataset.init=1;cc.innerHTML='<span class="chip" data-cat="all" onclick="setItemCat(this)">'+t('all')+'</span>'+['consumable','early','mid','late','neutral'].map(c=>`<span class="chip" data-cat="${c}" onclick="setItemCat(this)">${t(catKey[c]||c)}</span>`).join('');const fc=cc.querySelector&&cc.querySelector('[data-cat="all"]');if(fc)fc.classList.add('active');}
+  const tc=document.getElementById('itemtierchips');
+  if(tc&&!tc.dataset.init){tc.dataset.init=1;tc.innerHTML='<span class="chip" data-tier="all" onclick="setItemTier(this)">'+t('allTiers')+'</span>'+[['basic','basic'],['upgrade','upgrade'],['artifact','artifact'],['neutral','neutral']].map(([k,l])=>`<span class="chip" data-tier="${k}" onclick="setItemTier(this)">${t(l)}</span>`).join('');const ft=tc.querySelector&&tc.querySelector('[data-tier="all"]');if(ft)ft.classList.add('active');}
+  const q=(document.getElementById('item-search').value||'').toLowerCase();
+  const list=IT.filter(i=>{if(itemFilter.cat!=='all'&&i.category!==itemFilter.cat)return false;if(itemFilter.tier!=='all'&&i.tier!==itemFilter.tier)return false;if(q&&!(i.name.en.toLowerCase().includes(q)||(i.name.fa||'').toLowerCase().includes(q)||i.id.includes(q)))return false;return true;}).sort((a,b)=>(a.cost||0)-(b.cost||0));
+  document.getElementById('itemcount').textContent='('+list.length+')';
+  document.getElementById('itemgrid').innerHTML=list.map(i=>`<div class="card item-card" onclick="openItemModal('${i.id}')"><div class="ic">${itemImgOrTile(i)}</div><div><div class="iname">${esc(ln(i.name))}</div><div class="sub">${esc(i.name.en||'')}</div></div><div class="cost">${i.cost||0}</div></div>`).join('');
+  document.getElementById('itemgrid-empty').style.display=list.length?'none':'block';
+}
+function initItemSearch(){const s=document.getElementById('item-search');if(s)s.addEventListener('input',()=>renderItems());}
+function openItemModal(id){const it=getItem(id);if(!it)return;
+  const parts=(it.components||[]).map(c=>{const x=getItem(c);return x?miniItem(x.id):'';}).join('');
+  document.getElementById('modalbox').innerHTML=`
+    <div class="modalhead"><div class="av ${hasItemImg(it.id)?'':'fb'}">${hasItemImg(it.id)?`<img src="${ITEM_IMG(it.id)}">`:esc(ln(it.name).charAt(0))}</div>
+      <div><h2>${esc(ln(it.name))}</h2><div class="muted" style="font-size:12px">${esc(it.name.en||'')}</div>
+        <div class="cost" style="color:#e8a33a;font-weight:800;margin-top:4px">💠 ${it.cost||0}</div></div>
+      <button class="closebtn" onclick="closeModal()">✕</button></div>
+    <div class="modalbody">
+      <div class="descbox"><h4>${t('desc')}</h4><p>${esc(ln(it.description))}</p></div>
+      ${it.abilities&&ln(it.abilities)?`<div class="descbox"><h4>${t('ability')}</h4><p>${esc(ln(it.abilities))}</p></div>`:''}
+      ${it.goodFor&&ln(it.goodFor)?`<div class="descbox"><h4>${t('goodFor')}</h4><p>${esc(ln(it.goodFor))}</p></div>`:''}
+      ${parts?`<div class="descbox"><h4>${t('components')}</h4><div class="slot-img-row">${parts}</div></div>`:''}
+    </div>`;
+  document.getElementById('modal').classList.add('show');
+}
+function closeModal(){document.getElementById('modal').classList.remove('show');}
+
+/* counter */
+function renderCounter(){document.getElementById('counterpick-grid').innerHTML=H.map(h=>heroCard(h)).join('');}
+function openCounter(id){counterHero=id;renderCounterResult();}
+function renderCounterResult(){const h=byId[counterHero];const box=document.getElementById('counterresult');if(!h){box.innerHTML='';return;}document.getElementById('counterpick-grid').innerHTML=H.map(hh=>heroCard(hh)).join('');
+  box.innerHTML=`<div class="panelbox" style="margin-top:18px"><div class="panel-title">🧠 ${t('counterFor')} ${esc(heroName(h))}</div><div style="height:10px"></div>${countPanel(h)}</div>`;}
+
+/* meta */
+const STREAMERS=[
+ {n:'Arteezy',tag:'Carry · Streamer',ini:'A',r:'One of the most popular pro Carry players & streamers, known for aggressive carry builds and top mechanics.'},
+ {n:'Miracle-',tag:'Carry/Mid · Legend',ini:'M',r:'Top-tier pro player; his meta builds are a reference.'},
+ {n:'Quinn',tag:'Mid · Two-time Major MVP',ini:'Q',r:'His mid builds set the standard.'},
+ {n:'N0tail',tag:'Mid/Support · 2x TI champ',ini:'N',r:'Legendary OG captain.'},
+ {n:'Topson',tag:'Mid · TI champion',ini:'T',r:'Unconventional but highly effective mid builds.'},
+ {n:'Yatoro',tag:'Carry · TI champion',ini:'Y',r:'Elite Team Spirit carry — his 6-slot builds are a reference.'},
+ {n:'Cr1t-',tag:'Support · TI champion',ini:'C',r:'Aggressive support with advanced builds.'},
+ {n:'Puppey',tag:'Captain · Legend',ini:'P',r:'Longest-active captain — reference support/offlane builds.'},
+];
+function renderMeta(){document.getElementById('streamergrid').innerHTML=STREAMERS.map(s=>`<div class="streamer"><div class="ava">${s.ini}</div><div><div class="nm">${s.n}</div><div class="tag">${s.tag}</div><div class="role">${s.r}</div></div></div>`).join('');}
+
+/* patch */
+const PATCH_NOTES=[
+ {hero:'Abyssal Blade',chg:'Strength +26→+30',pl:1},{hero:'Butterfly',chg:'AGI −35, +25→+30 DMG',pl:1},
+ {hero:"Shiva's Guard",chg:'Recipe −1350→−1250',pl:0},{hero:'Gleipnir',chg:'Recipe −400→−300',pl:0},
+ {hero:'Eye of Skadi',chg:'Attack slow 20%→25%',pl:1},{hero:'Hand of Midas',chg:'AS +35→+40',pl:0},
+ {hero:'Kaya',chg:'Mana Regen Amp 30%→20%',pl:-1},{hero:'Satanic',chg:'Unholy Rage CD 30s→40s',pl:-1},
+ {hero:'Smoke of Deceit',chg:'Fixed duration',pl:0},{hero:'Orb of Venom',chg:'DoT 10→12',pl:1},
+ {hero:'Urn/Spirit Vessel',chg:'Stash no charges',pl:-1},{hero:'Divine Rapier',chg:'Spell Amp no stack',pl:0},
+ {hero:'Ancient Apparition',chg:'Ice Blast CD 60/50/40→50/45/40',pl:1},{hero:'Axe',chg:'Base AGI −2; Battle Hunger DoT −',pl:0},
+ {hero:'Bane',chg:'Nightmare 3.5→3s',pl:0},{hero:'Centaur',chg:'Retaliate −; Double Edge buff −',pl:0},
+ {hero:'Chaos Knight',chg:'Chaos Bolt speed 700→900',pl:1},{hero:'Clockwerk',chg:'Cogs range −',pl:0},
+ {hero:'Death Prophet',chg:'AGI gain 2.0→2.3',pl:1},{hero:'Doom',chg:'Range 200→175; Infernal Blade +',pl:1},
+ {hero:'Dragon Knight',chg:'Wyrm Wrath AoE +',pl:1},{hero:'Drow Ranger',chg:'Multishot mana +',pl:-1},
+ {hero:'Ember Spirit',chg:'MS 300→295',pl:0},{hero:'Gyrocopter',chg:'Homing Missile CD −; mana −',pl:1},
+ {hero:'Hoodwink',chg:'Sharpshooter cost +',pl:-1},{hero:'Invoker',chg:'Ghost Walk 60→50s',pl:0},
+ {hero:'Jakiro',chg:'INT gain 3.0→3.3',pl:1},{hero:'Legion Commander',chg:'Base STR +; talent rework',pl:1},
+ {hero:'Lina',chg:'Base AGI 23→21',pl:0},{hero:'Lone Druid',chg:'Bear armor −; buildings −',pl:-1},
+ {hero:'Magnus',chg:'Horn Toss 300→325',pl:1},{hero:'Medusa',chg:'Split Shot toggle fix',pl:0},
+ {hero:'Morphling',chg:'Morph CD −',pl:1},{hero:'Necrophos',chg:'Death Seeker range −',pl:0},
+ {hero:'Night Stalker',chg:'Crippling Fear −',pl:0},{hero:'Outworld Destroyer',chg:'Objurgation buff',pl:1},
+ {hero:'Phantom Assassin',chg:'Blur undispel',pl:1},{hero:'Phantom Lancer',chg:'Aghs Shard CD +',pl:0},
+ {hero:'Puck',chg:'Illusory Orb CD +',pl:-1},{hero:'Pugna',chg:'INT +26→27',pl:1},
+ {hero:'Queen of Pain',chg:'Sonic Wave stacks',pl:1},{hero:'Ringmaster',chg:'Impalement dps −',pl:0},
+ {hero:'Shadow Fiend',chg:'INT −; stacks 7s→6s',pl:0},{hero:'Snapfire',chg:'Firesnap +global nerfs',pl:-1},
+ {hero:'Sniper',chg:'Grenade root cast',pl:0},{hero:'Spectre',chg:'Haunt illusion rescaled',pl:0},
+ {hero:'Templar Assassin',chg:'Projection interrupt',pl:0},{hero:'Tiny',chg:'Base HP regen −1',pl:0},
+ {hero:'Treant',chg:'AS 100→90; Leech Seed −',pl:-1},{hero:'Troll Warlord',chg:'AGI +; stance fix',pl:1},
+ {hero:'Underlord',chg:'Gate interruptible',pl:0},{hero:'Undying',chg:'MS 300→295',pl:0},
+ {hero:'Vengeful Spirit',chg:'illusion vision fix',pl:0},{hero:'Venomancer',chg:'Snakebite +',pl:1},
+ {hero:'Visage',chg:'Stone Form fix',pl:0},{hero:'Weaver',chg:'Thread distance +',pl:1},
+ {hero:'Witch Doctor',chg:'Maledict AoE fix',pl:0},{hero:'Zeus',chg:'Thundergod 300→275',pl:0},
+];
+function renderPatch(){document.getElementById('patch-notes').innerHTML=PATCH_NOTES.map(p=>`<li><span class="heroN">${esc(p.hero)}</span><span class="chg">${esc(p.chg)}</span>${p.pl?`<span class="pl">${p.pl>0?'▲ '+t('buff'):'▼ '+t('nerf')}</span>`:''}</li>`).join('');}
+
+/* tooltip */
+function tip(el,title,desc,cost){const x=document.getElementById('tooltip');if(!x)return;x.innerHTML=`<div class="tn">${title}</div><div class="td">${desc}</div>${cost?`<div class="tc">💠 ${cost}</div>`:''}`;x.classList.add('show');const r=el.getBoundingClientRect();x.style.left=(r.left+r.width/2)+'px';x.style.top=(r.top)+'px';}
+function hideTip(){const x=document.getElementById('tooltip');if(x)x.classList.remove('show');}
+document.addEventListener('mouseout',e=>{if(e.target.closest&&!e.target.closest('.slot')&&!e.target.closest('.mini-slot'))hideTip();});
+
+/* init */
+document.addEventListener('DOMContentLoaded',()=>{let saved=null;try{saved=localStorage.getItem('dlang');}catch(e){}if(saved)LANG=saved;setLang(LANG);initHeroSearch();initItemSearch();route();});
+</script>
+</body>
+</html>
